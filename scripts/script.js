@@ -47,9 +47,9 @@ Library.prototype.deleteBook = function (id) {
 
 // visibly display book
 function constructBooks(ctr, library) {
-  const newBook = document.createElement("div");
-
   for (let i = 0; i < library.books.length; i++) {
+    const newBook = document.createElement("div");
+
     newBook.className = "bookContainer";
     const author = document.createElement("p");
     author.textContent = library.books[i].author;
@@ -61,9 +61,9 @@ function constructBooks(ctr, library) {
     newBook.appendChild(author);
     newBook.appendChild(title);
     newBook.appendChild(pages);
-  }
 
-  ctr.appendChild(newBook);
+    ctr.appendChild(newBook);
+  }
 }
 
 function main() {

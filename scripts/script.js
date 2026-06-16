@@ -1,11 +1,12 @@
 // book object instantiation
-function Book(author, title, pages) {
+function Book(author, title, pages, cover) {
   if (!new.target) {
     throw Error("Book object not initialized with new keyword");
   }
   this.author = author;
   this.title = title;
   this.pages = pages;
+  this.cover = cover;
   // metadata
   this.id = crypto.randomUUID();
 }
@@ -45,21 +46,17 @@ Library.prototype.deleteBook = function (id) {
   }
 };
 
-// visibly display book
+// display current books in library
 function constructBooks(ctr, library) {
   for (let i = 0; i < library.books.length; i++) {
     const newBook = document.createElement("div");
-
-    newBook.className = "bookContainer";
     const author = document.createElement("p");
-    author.textContent = library.books[i].author;
     const title = document.createElement("p");
-    title.textContent = library.books[i].title;
     const pages = document.createElement("p");
-    pages.textContent = library.books[i].pages;
+    // const image = document.createElement("img");
 
-    newBook.appendChild(author);
-    newBook.appendChild(title);
+    /* logic */
+
     newBook.appendChild(pages);
 
     ctr.appendChild(newBook);
@@ -69,13 +66,6 @@ function constructBooks(ctr, library) {
 function main() {
   const ctr = document.querySelector(".container");
   const library = new Library();
-
-  library.addBook("andy weir", "hail mary", 496);
-  library.addBook("jester santosx", "goodbye", 2);
-  library.addBook("other books", "fdf", 242);
-  library.addBook("lala", "ladedall", 24264);
-
-  console.log(library.books);
 
   constructBooks(ctr, library);
 }

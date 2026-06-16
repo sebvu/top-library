@@ -1,3 +1,4 @@
+// book object instantiation
 function Book(author, title, pages) {
   if (!new.target) {
     throw Error("Book object not initialized with new keyword");
@@ -9,6 +10,7 @@ function Book(author, title, pages) {
   this.id = crypto.randomUUID();
 }
 
+// central library object to handle all library logic
 function Library() {
   if (!new.target) {
     throw Error("Library object not initialized with new keyword");

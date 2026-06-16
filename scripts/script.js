@@ -45,8 +45,39 @@ Library.prototype.deleteBook = function (id) {
   }
 };
 
+// visibly display book
+function constructBooks(ctr, library) {
+  const newBook = document.createElement("div");
+
+  for (let i = 0; i < library.books.length; i++) {
+    newBook.className = "bookContainer";
+    const author = document.createElement("p");
+    author.textContent = library.books[i].author;
+    const title = document.createElement("p");
+    title.textContent = library.books[i].title;
+    const pages = document.createElement("p");
+    pages.textContent = library.books[i].pages;
+
+    newBook.appendChild(author);
+    newBook.appendChild(title);
+    newBook.appendChild(pages);
+  }
+
+  ctr.appendChild(newBook);
+}
+
 function main() {
-  let library = new Library();
+  const ctr = document.querySelector(".container");
+  const library = new Library();
+
+  library.addBook("andy weir", "hail mary", 496);
+  library.addBook("jester santosx", "goodbye", 2);
+  library.addBook("other books", "fdf", 242);
+  library.addBook("lala", "ladedall", 24264);
+
+  console.log(library.books);
+
+  constructBooks(ctr, library);
 }
 
 main();

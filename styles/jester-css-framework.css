@@ -25,6 +25,7 @@
 :root {
   --base-size: 0.75rem;
   --base-response: 1vw;
+  --base-static-multiplier: 2.5;
 
   /* clamp multipliers */
   --lower-clamp-ratio: 2;
@@ -55,7 +56,7 @@
 
   /* === non-responsive text === */
   /* base size */
-  --size-rg-static: 1rem;
+  --size-rg-static: calc(var(--base-size) * var(--base-static-multiplier));
   /* smaller */
   --size-sm-static: calc(var(--size-rg-static) * var(--size-scale-down-ratio));
   --size-xs-static: calc(var(--size-sm-static) * var(--size-scale-down-ratio));

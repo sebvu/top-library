@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,41 +21,51 @@
       </header>
       <section class="main-content">
         <!-- temporary hard coded cards -->
-        <div class="card --size-context-xs">
-          <div class="card__image-container">
-            <img
-              class="card__image"
-              src="assets/images/default-cover.jpg"
-              alt="Placeholder image for no cover that says Cover Not yet Available"
+        <div class="card">
+          <svg
+            class="card__bookmark-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M17,3H7A2,2 0 0,0 5,5V21L12,18L19,21V5C19,3.89 18.1,3 17,3Z"
             />
-          </div>
-          <p class="card__title _text _text--normal --size-context-rg">
-            Hail Mary
-          </p>
-          <p class="card__author _text _text--normal">Andy Weir</p>
-          <p class="card__pages _text _text--normal">456</p>
-          <div class="card__footer">
-            <button class="card__delete-button">Delete</button>
-            <button class="card__check-read-button">Has Read?</button>
-          </div>
-        </div>
-
-        <div class="card --size-context-xs">
-          <div class="card__image-container">
-            <img
-              class="card__image"
-              src="assets/images/default-cover.jpg"
-              alt="Placeholder image for no cover that says Cover Not yet Available"
-            />
-          </div>
-          <p class="card__title _text _text--normal --size-context-rg">
-            Hail Mary
-          </p>
-          <p class="card__author _text _text--normal">Andy Weir</p>
-          <p class="card__pages _text _text--normal">456</p>
-          <div class="card__footer">
-            <button class="card__delete-button">Delete</button>
-            <button class="card__check-read-button">Has Read?</button>
+          </svg>
+          <div class="card__button-area --size-context-md-static">
+            <button class="card__button card__button--bookmark">
+              <svg
+                class="card__button-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+              >
+                <path
+                  d="M713-600 600-713l56-57 57 57 141-142 57 57-198 198ZM200-120v-640q0-33 23.5-56.5T280-840h240v80H280v518l200-86 200 86v-278h80v400L480-240 200-120Zm80-640h240-240Z"
+                />
+              </svg>
+            </button>
+            <svg class="card__button-divider">
+              <line
+                x1="50%"
+                y1="0"
+                x2="50%"
+                y2="100%"
+              />
+            </svg>
+            <button class="card__button card__button--delete">
+              <svg
+                class="card__button-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+              >
+                <path
+                  d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+                />
+              </svg>
+            </button>
           </div>
         </div>
         <!-- temporary hard coded cards -->

@@ -8,5 +8,43 @@ html {
 }
 
 .container {
-  grid: "Color" 
+  display: grid;
+  grid:
+    "header" 1fr
+    "body" 5fr
+    / 1fr;
+
+  height: 100%;
+}
+
+/* ========== */
+/* Header Styling */
+/* ========== */
+
+.header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+
+  padding: 2em;
+
+  background-color: var(--background-color);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.header__logo {
+  color: var(--_text-color);
+}
+
+/* ========== */
+/* Main Content Styling */
+/* ========== */
+
+.main-content {
+  grid-area: body;
+  display: flex;
+
+  padding: 2em;
+
+  background-color: var(--background-color);
 }

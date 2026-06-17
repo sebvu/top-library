@@ -2,29 +2,25 @@
   Jester's CSS Framework File
 */
 
-/* optional fields to be defined by user */
-
-/*
 @font-face {
-  --_foo-font-family: "foo";
-  font-family: var(--_foo-font-family);
+  font-family: "abel";
   src:
-    url("foo.woff2") format("woff2"),
-    url("foo.woff") format("woff");
+    url("../assets/fonts/abel-regular-webfont.woff2") format("woff2"),
+    url("../assets/fonts/abel-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  --_bar-font-family: "bar";
-  font-family: var(--_bar-font-family);
+  font-family: "aleoregular";
   src:
-    url("bar.woff2") format("woff2"),
-    url("bar.woff") format("woff");
+    url("../assets/fonts/aleo-regular-webfont.woff2") format("woff2"),
+    url("../assets/fonts/aleo-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
-*/
 
 :root {
   --base-size: 0.75rem;
@@ -59,20 +55,20 @@
   --accent-color: var(--_accent-color);
 
   /* light theme (default) */
-  --_text-color: #050316;
-  --_background-color: #fbfbfe;
-  --_primary-color: #2f27ce;
-  --_secondary-color: #dddbff;
-  --_accent-color: #443dff;
+  --_text-color: #080302;
+  --_background-color: #fbf0ef;
+  --_primary-color: #d24232;
+  --_secondary-color: #e5c78a;
+  --_accent-color: #ded268;
 }
 
 /* dark theme */
 :root[data-theme="dark"] {
-  --_text-color: #eae9fc;
-  --_background-color: #010104;
-  --_primary-color: #3a31d8;
-  --_secondary-color: #020024;
-  --_accent-color: #0600c2;
+  --_text-color: #fdf8f7;
+  --_background-color: #100504;
+  --_primary-color: #cd3d2d;
+  --_secondary-color: #75571a;
+  --_accent-color: #978b21;
 }
 
 /* === size context providers === */
@@ -123,17 +119,13 @@
   font-weight: normal;
 }
 
-/* optional fields to be defined by user */
-
-/*
-._text._text--foo {
-  --_font-family: var(--_foo-bar-family);
+._text._text--header {
+  --_font-family: "aleo";
 }
 
-._text._text--bar {
-  --_font-family: var(--_bar-font-family);
+._text._text--normal {
+  --_font-family: "abel";
 }
-*/
 
 ._text._text--bold {
   font-weight: bold;

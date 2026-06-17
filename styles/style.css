@@ -33,7 +33,7 @@ html {
 }
 
 .header__logo {
-  color: var(--_text-color);
+  color: var(--text-color);
 }
 
 .header__add-button {

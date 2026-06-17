@@ -34,6 +34,7 @@
   --size-scale-down-ratio: 0.8;
   --size-scale-up-ratio: 1.2;
 
+  /* === responsive text === */
   /* base size */
   --size-rg: clamp(
     var(--base-size) * var(--lower-clamp-ratio),
@@ -52,6 +53,24 @@
   --size-xxl: calc(var(--size-xl) * var(--size-scale-up-ratio));
   --size-xxxl: calc(var(--size-xxl) * var(--size-scale-up-ratio));
 
+  /* === non-responsive text === */
+  /* base size */
+  --size-rg-static: var(--base-size);
+  /* smaller */
+  --size-sm-static: calc(var(--size-rg-static) * var(--size-scale-down-ratio));
+  --size-xs-static: calc(var(--size-sm-static) * var(--size-scale-down-ratio));
+  --size-xxs-static: calc(var(--size-xs-static) * var(--size-scale-down-ratio));
+  --size-xxxs-static: calc(
+    var(--size-xxs-static) * var(--size-scale-down-ratio)
+  );
+  /* larger */
+  --size-md-static: calc(var(--size-rg-static) * var(--size-scale-up-ratio));
+  --size-lg-static: calc(var(--size-md-static) * var(--size-scale-up-ratio));
+  --size-xl-static: calc(var(--size-lg-static) * var(--size-scale-up-ratio));
+  --size-xxl-static: calc(var(--size-xl-static) * var(--size-scale-up-ratio));
+  --size-xxxl-static: calc(var(--size-xxl-static) * var(--size-scale-up-ratio));
+  /* === color schemes === */
+
   /* light theme (default) */
   --text-color: #080302;
   --opposite-text-color: #fdf8f7;
@@ -69,13 +88,15 @@
   --opposite-text-color: #080302;
   --background-color: #100504;
   --opposite-background-color: #fbf0ef;
-  --offset-background-color: #0a0201;
+  --offset-background-color: #160908;
   --primary-color: #cd3d2d;
   --secondary-color: #75571a;
   --accent-color: #978b21;
 }
 
 /* === size context providers === */
+
+/* responsive accessors */
 
 .--size-context-rg {
   --size: var(--size-rg);
@@ -111,6 +132,40 @@
 
 .--size-context-xxxl {
   --size: var(--size-xxxl);
+}
+
+/* static accessors */
+
+.--size-context-rg-static {
+  --size: var(--size-rg-static);
+}
+
+.--size-context-sm-static {
+  --size: var(--size-sm-static);
+}
+
+.--size-context-xxs-static {
+  --size: var(--size-xxs-static);
+}
+
+.--size-context-xxxs-static {
+  --size: var(--size-xxxs-static);
+}
+
+.--size-context-lg-static {
+  --size: var(--size-lg-static);
+}
+
+.--size-context-xl-static {
+  --size: var(--size-xl-static);
+}
+
+.--size-context-xxl-static {
+  --size: var(--size-xxl-static);
+}
+
+.--size-context-xxxl-static {
+  --size: var(--size-xxxl-static);
 }
 
 /* === text classes === */

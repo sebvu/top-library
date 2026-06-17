@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,13 +13,28 @@
     <div class="container">
       <header class="header --size-context-xl">
         <h1 class="header__logo _text _text--header _text--bold">
-          Jester's Library
+          Reader Tracker
         </h1>
         <button class="header__add-button">
           <span class="_text _text--normal --size-context-sm">Add Book</span>
         </button>
       </header>
-      <section class="main-content"></section>
+      <section class="main-content">
+        <div class="card">
+          <div class="card__header">
+            <button class="card__delete-button">Delete</button>
+            <button class="card__check-read-button">Has Read?</button>
+          </div>
+          <img
+            class="card__image"
+            src="assets/images/default-cover.jpg"
+            alt="Placeholder image for no cover that says Cover Not yet Available"
+          />
+          <p class="card__title">Hail Mary</p>
+          <p class="card__pages">Andy Weir</p>
+          <p class="card__pages"></p>
+        </div>
+      </section>
     </div>
   </body>
 </html>

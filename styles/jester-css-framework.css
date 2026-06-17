@@ -38,8 +38,8 @@
   /* smaller */
   --size-sm: calc(var(--size-rg) * var(--size-scale-down-ratio));
   --size-xs: calc(var(--size-sm) * var(--size-scale-down-ratio));
-  --size-xss: calc(var(--size-xs) * var(--size-scale-down-ratio));
-  --size-xsss: calc(var(--size-xss) * var(--size-scale-down-ratio));
+  --size-xxs: calc(var(--size-xs) * var(--size-scale-down-ratio));
+  --size-xxxs: calc(var(--size-xxs) * var(--size-scale-down-ratio));
   /* larger */
   --size-md: calc(var(--size-rg) * var(--size-scale-up-ratio));
   --size-lg: calc(var(--size-md) * var(--size-scale-up-ratio));
@@ -81,12 +81,12 @@
   --_size: var(--size-sm);
 }
 
-.--size-context-xss {
-  --_size: var(--size-xss);
+.--size-context-xxs {
+  --_size: var(--size-xxs);
 }
 
-.--size-context-xsss {
-  --_size: var(--size-xsss);
+.--size-context-xxxs {
+  --_size: var(--size-xxxs);
 }
 
 .--size-context-md {

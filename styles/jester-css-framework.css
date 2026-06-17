@@ -55,7 +55,7 @@
 
   /* === non-responsive text === */
   /* base size */
-  --size-rg-static: var(--base-size);
+  --size-rg-static: 1rem;
   /* smaller */
   --size-sm-static: calc(var(--size-rg-static) * var(--size-scale-down-ratio));
   --size-xs-static: calc(var(--size-sm-static) * var(--size-scale-down-ratio));
@@ -148,7 +148,7 @@
   --size: var(--size-sm-static);
 }
 
-.--size-context-xs {
+.--size-context-xs-static {
   --size: var(--size-xs-static);
 }
 

@@ -1,0 +1,121 @@
+/*
+  Jester's CSS Framework File
+*/
+
+/* optional fields to be defined by user */
+
+/*
+@font-face {
+  --_foo-font-family: "foo";
+  font-family: var(--_foo-font-family);
+  src:
+    url("foo.woff2") format("woff2"),
+    url("foo.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  --_bar-font-family: "bar";
+  font-family: var(--_bar-font-family);
+  src:
+    url("bar.woff2") format("woff2"),
+    url("bar.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+
+:root {
+  --base-size: 0.75rem;
+  --base-response: 1.5vw;
+
+  /* ratio multiplier between sizes */
+  --size-scale-down-ratio: 0.8rem;
+  --size-scale-up-ratio: 1.2rem;
+
+  /* size context accessor */
+  --size: var(--_size, var(--size-rg, 1rem));
+
+  /* base size */
+  --size-rg: calc(var(--base-size) + var(--base-response));
+  /* smaller */
+  --size-sm: calc(var(--size-rg) * var(--size-scale-down-ratio));
+  --size-xs: calc(var(--size-sm) * var(--size-scale-down-ratio));
+  --size-xss: calc(var(--size-xs) * var(--size-scale-down-ratio));
+  --size-xsss: calc(var(--size-xss) * var(--size-scale-down-ratio));
+  /* larger */
+  --size-md: calc(var(--size-rg) * var(--size-scale-up-ratio));
+  --size-lg: calc(var(--size-md) * var(--size-scale-up-ratio));
+  --size-xl: calc(var(--size-lg) * var(--size-scale-up-ratio));
+  --size-xxl: calc(var(--size-xl) * var(--size-scale-up-ratio));
+  --size-xxxl: calc(var(--size-xxl) * var(--size-scale-up-ratio));
+}
+
+/* === size context providers === */
+
+.--size-context-rg {
+  --_size: var(--size-rg);
+}
+
+.--size-context-sm {
+  --_size: var(--size-sm);
+}
+
+.--size-context-xss {
+  --_size: var(--size-xss);
+}
+
+.--size-context-xsss {
+  --_size: var(--size-xsss);
+}
+
+.--size-context-md {
+  --_size: var(--size-md);
+}
+
+.--size-context-lg {
+  --_size: var(--size-lg);
+}
+
+.--size-context-xl {
+  --_size: var(--size-xl);
+}
+
+.--size-context-xxl {
+  --_size: var(--size-xxl);
+}
+
+.--size-context-xxxl {
+  --_size: var(--size-xxxl);
+}
+
+/* === text classes === */
+
+._text {
+  font-family:
+    var(--_font-family), system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: var(--size);
+  font-weight: normal;
+}
+
+/* optional fields to be defined by user */
+
+/*
+._text._text--foo {
+  --_font-family: var(--_foo-bar-family);
+}
+
+._text._text--bar {
+  --_font-family: var(--_bar-font-family);
+}
+*/
+
+._text._text--bold {
+  font-weight: bold;
+}
+
+._text._text--italic {
+  font-style: italic;
+}

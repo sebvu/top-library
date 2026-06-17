@@ -58,6 +58,8 @@ html {
   order: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
 
   padding: 3rem 2rem;
 
@@ -69,34 +71,99 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: space-between;
 
-  padding: 1rem;
-  height: 300px;
-  width: 200px;
+  padding: 1rem 3rem;
+  height: 420px;
+  width: 300px;
 
   background-color: var(--background-color);
   box-shadow: 0px 0px 12px var(--opposite-background-color);
+  border-radius: 1rem;
 }
+.card__image-container {
+  flex: auto;
+  display: flex; /* to center book cover images */
+  justify-content: center;
+  align-items: center;
 
-.card__header {
-}
-
-.card__delete-button {
-}
-
-.card__check-read-button {
-}
-
-.card__author {
-}
-
-.card__title {
-}
-
-.card__pages {
+  overflow: hidden;
 }
 
 .card__image {
+  object-fit: cover;
+}
+
+.card__title {
+  flex: auto;
+
+  width: 100%;
+
+  color: var(--text-color);
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.card__author {
+  flex: auto;
+
+  width: 100%;
+
+  color: var(--text-color);
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.card__pages {
+  flex: auto;
+
+  color: var(--accent-color);
+}
+
+.card__pages::after {
+  flex: auto;
+
+  color: var(--text-color);
+  content: " pages";
+}
+
+.card__footer {
+  flex: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+
+  margin-top: 1rem;
+}
+
+.card__delete-button {
+  height: calc(var(--size) * 0.8);
+  width: calc(var(--size) * 2);
+
+  padding: 0.2rem 0.5rem;
+
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.card__check-read-button {
+  height: calc(var(--size) * 0.8);
+  width: calc(var(--size) * 2);
+
+  padding: 0.2rem 0.5rem;
+
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0.5rem;
 }

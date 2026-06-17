@@ -129,6 +129,7 @@ html {
   height: var(--size);
   width: var(--size);
 
+  /* cascade svg styles */
   stroke: rgb(from var(--text-color) r g b / 50%);
   stroke-width: 3px;
 }

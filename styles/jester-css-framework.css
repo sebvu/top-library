@@ -106,6 +106,10 @@
   --size: var(--size-sm);
 }
 
+.--size-context-xs {
+  --size: var(--size-xs);
+}
+
 .--size-context-xxs {
   --size: var(--size-xxs);
 }
@@ -144,12 +148,20 @@
   --size: var(--size-sm-static);
 }
 
+.--size-context-xs {
+  --size: var(--size-xs-static);
+}
+
 .--size-context-xxs-static {
   --size: var(--size-xxs-static);
 }
 
 .--size-context-xxxs-static {
   --size: var(--size-xxxs-static);
+}
+
+.--size-context-md-static {
+  --size: var(--size-md-static);
 }
 
 .--size-context-lg-static {

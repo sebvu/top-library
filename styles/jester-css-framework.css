@@ -31,7 +31,8 @@
   --size-scale-up-ratio: 1.2rem;
 
   /* size context accessor */
-  --size: var(--_size, var(--size-rg, 1rem));
+  /* --size: var(--_size, var(--size-rg, 1rem)); */
+  --size: var(--_size);
 
   /* base size */
   --size-rg: calc(var(--base-size) + var(--base-response));
@@ -47,28 +48,21 @@
   --size-xxl: calc(var(--size-xl) * var(--size-scale-up-ratio));
   --size-xxxl: calc(var(--size-xxl) * var(--size-scale-up-ratio));
 
-  /* color accessors */
-  --text-color: var(--_text-color);
-  --background-color: var(--_background-color);
-  --primary-color: var(--_primary-color);
-  --secondary-color: var(--_secondary-color);
-  --accent-color: var(--_accent-color);
-
   /* light theme (default) */
-  --_text-color: #080302;
-  --_background-color: #fbf0ef;
-  --_primary-color: #d24232;
-  --_secondary-color: #e5c78a;
-  --_accent-color: #ded268;
+  --text-color: #080302;
+  --background-color: #fbf0ef;
+  --primary-color: #d24232;
+  --secondary-color: #e5c78a;
+  --accent-color: #ded268;
 }
 
 /* dark theme */
 :root[data-theme="dark"] {
-  --_text-color: #fdf8f7;
-  --_background-color: #100504;
-  --_primary-color: #cd3d2d;
-  --_secondary-color: #75571a;
-  --_accent-color: #978b21;
+  --text-color: #fdf8f7;
+  --background-color: #100504;
+  --primary-color: #cd3d2d;
+  --secondary-color: #75571a;
+  --accent-color: #978b21;
 }
 
 /* === size context providers === */

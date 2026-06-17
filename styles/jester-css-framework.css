@@ -50,6 +50,29 @@
   --size-xl: calc(var(--size-lg) * var(--size-scale-up-ratio));
   --size-xxl: calc(var(--size-xl) * var(--size-scale-up-ratio));
   --size-xxxl: calc(var(--size-xxl) * var(--size-scale-up-ratio));
+
+  /* color accessors */
+  --text-color: var(--_text-color);
+  --background-color: var(--_background-color);
+  --primary-color: var(--_primary-color);
+  --secondary-color: var(--_secondary-color);
+  --accent-color: var(--_accent-color);
+
+  /* light theme (default) */
+  --_text-color: #050316;
+  --_background-color: #fbfbfe;
+  --_primary-color: #2f27ce;
+  --_secondary-color: #dddbff;
+  --_accent-color: #443dff;
+}
+
+/* dark theme */
+:root[data-theme="dark"] {
+  --_text-color: #eae9fc;
+  --_background-color: #010104;
+  --_primary-color: #3a31d8;
+  --_secondary-color: #020024;
+  --_accent-color: #0600c2;
 }
 
 /* === size context providers === */

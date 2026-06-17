@@ -18,6 +18,10 @@ html {
 }
 
 /* ========== */
+/* Utility Styling */
+/* ========== */
+
+/* ========== */
 /* Header Styling */
 /* ========== */
 
@@ -25,8 +29,9 @@ html {
   grid-area: header;
   display: flex;
   align-items: center;
+  gap: var(--size);
 
-  padding: 2em;
+  padding: 2rem;
 
   background-color: var(--background-color);
   border-bottom: 2px solid var(--accent-color);
@@ -37,7 +42,12 @@ html {
 }
 
 .header__add-button {
+  height: calc(var(--size) * 0.8);
+  width: calc(var(--size) * 2);
 
+  color: var(--background-color);
+  background-color: var(--);
+  border-radius: 1rem;
 }
 
 /* ========== */
@@ -48,7 +58,7 @@ html {
   grid-area: body;
   display: flex;
 
-  padding: 2em;
+  padding: 2rem;
 
   background-color: var(--background-color);
 }

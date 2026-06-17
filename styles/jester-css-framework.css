@@ -54,7 +54,9 @@
 
   /* light theme (default) */
   --text-color: #080302;
+  --opposite-text-color: #fdf8f7;
   --background-color: #fbf0ef;
+  --opposite-background-color: #100504;
   --primary-color: #d24232;
   --secondary-color: #e5c78a;
   --accent-color: #ded268;
@@ -63,7 +65,9 @@
 /* dark theme */
 :root[data-theme="dark"] {
   --text-color: #fdf8f7;
+  --opposite-text-color: #080302;
   --background-color: #100504;
+  --opposite-background-color: #fbf0ef;
   --primary-color: #cd3d2d;
   --secondary-color: #75571a;
   --accent-color: #978b21;
@@ -72,57 +76,57 @@
 /* === size context providers === */
 
 .--size-context-rg {
-  --_size: var(--size-rg);
+  --size: var(--size-rg);
 }
 
 .--size-context-sm {
-  --_size: var(--size-sm);
+  --size: var(--size-sm);
 }
 
 .--size-context-xxs {
-  --_size: var(--size-xxs);
+  --size: var(--size-xxs);
 }
 
 .--size-context-xxxs {
-  --_size: var(--size-xxxs);
+  --size: var(--size-xxxs);
 }
 
 .--size-context-md {
-  --_size: var(--size-md);
+  --size: var(--size-md);
 }
 
 .--size-context-lg {
-  --_size: var(--size-lg);
+  --size: var(--size-lg);
 }
 
 .--size-context-xl {
-  --_size: var(--size-xl);
+  --size: var(--size-xl);
 }
 
 .--size-context-xxl {
-  --_size: var(--size-xxl);
+  --size: var(--size-xxl);
 }
 
 .--size-context-xxxl {
-  --_size: var(--size-xxxl);
+  --size: var(--size-xxxl);
 }
 
 /* === text classes === */
 
 ._text {
   font-family:
-    var(--_font-family), system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    var(--font-family), system-ui, "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: var(--_size);
+  font-size: var(--size);
   font-weight: normal;
 }
 
 ._text._text--header {
-  --_font-family: "aleo";
+  --font-family: "aleo";
 }
 
 ._text._text--normal {
-  --_font-family: "abel";
+  --font-family: "abel";
 }
 
 ._text._text--bold {

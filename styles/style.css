@@ -79,7 +79,7 @@ html {
     / 1fr 1fr;
 
   padding: 1.5rem 2rem 2rem;
-  height: 300px;
+  height: 280px;
   width: 400px;
 
   background-color: var(--background-color);
@@ -173,12 +173,20 @@ html {
 }
 
 .card__author {
+  color: var(--text-color);
 }
 
 .card__pages {
+  color: var(--secondary-color);
+}
+
+.card__pages::after {
+  color: var(--text-color);
+  content: " pages";
 }
 
 .card__status {
+  color: var(--text-color);
 }
 
 .card__book-img-container {

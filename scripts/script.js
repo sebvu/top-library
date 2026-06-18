@@ -58,14 +58,14 @@ Library.prototype.deleteBook = function (id) {
 };
 
 // display current books in library
-function buildExistingBooks(books, ctr) {
+function buildExistingBooks(library, ctr) {
   const setAttrs = (el, attrs) => {
     for (let key in attrs) {
       el.setAttribute(key, attrs[key]);
     }
   };
 
-  for (var b of books) {
+  for (let b of library.books) {
     // construct shell
     const cardFlexContainer = document.createElement("div");
     cardFlexContainer.classList.add(...["card-flex-container"]);
@@ -228,6 +228,46 @@ function buildExistingBooks(books, ctr) {
     cardDataContainer.appendChild(cardPages);
     cardDataContainer.appendChild(cardStatus);
 
+    card.addEventListener("click", (e) => {
+      const target = e.target.classList;
+      const id = card.id;
+      const bookIndex = library.findBookIndex(id);
+
+      if (!bookIndex && bookIndex !== 0)
+        throw Error(`Book index for ${id} not found`);
+
+      const bookRef = library.books[bookIndex];
+
+      switch (true) {
+        // toggle read status
+        case target.contains("card__button--bookmark"):
+          console.log(`Toggling ${id} status`);
+
+          bookRef.toggleRead();
+          // not the most optimized thing in the world but it works
+          while (ctr.firstChild) {
+            ctr.removeChild(ctr.firstChild);
+          }
+
+          buildExistingBooks(library, ctr);
+
+          break;
+        // delete book
+        case target.contains("card__button--delete"):
+          console.log(`Deleting ${id}`);
+
+          library.deleteBook(id);
+          card.parentElement.remove();
+
+          break;
+        default:
+          console.log(`No action taken for ${id} click`);
+      }
+
+      console.log(library.books);
+      // buildExistingBooks(library, ctr);
+    });
+
     // bringing everything together
     card.appendChild(cardBookmarkIcon);
     card.appendChild(cardTitle);
@@ -243,8 +283,11 @@ function main() {
   // keywords
   const THEME_REF_NAME = "data-theme";
 
-  const root = document.documentElement;
+  // interactive buttons
   const themeButton = document.querySelector(".header__toggle-button");
+  const addBookButton = document.querySelector(".header__add-button");
+
+  const root = document.documentElement;
   const cardsCtr = document.querySelector(".main-content");
   const library = new Library();
 
@@ -260,7 +303,6 @@ function main() {
 
   // TEST
   library.addBook("Andy Weir", "Hail Mary", 496, "assets/images/hail-mary.jpg");
-  library.books[0].toggleRead();
   library.addBook(
     "Becky Chambers",
     "Monk and Robot",
@@ -268,7 +310,9 @@ function main() {
     "assets/images/monk-and-robot.jpg",
   );
 
-  buildExistingBooks(library.books, cardsCtr);
+  library.books[0].toggleRead();
+
+  buildExistingBooks(library, cardsCtr);
   // TEST
 
   // theme switcher handler
@@ -280,6 +324,10 @@ function main() {
     root.setAttribute(THEME_REF_NAME, newTheme);
 
     localStorage.setItem(THEME_REF_NAME, newTheme); // persist theme per session
+  });
+
+  addBookButton.addEventListener("click", () => {
+    // modal implementation
   });
 }
 

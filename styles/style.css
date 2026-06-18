@@ -83,7 +83,7 @@ html {
   width: 400px;
 
   background-color: var(--background-color);
-  box-shadow: inset 0 0.8rem rgb(from var(--primary-color) r g b / 50%);
+  box-shadow: inset 0 0.8rem rgb(from var(--status-color) r g b / 50%);
   border-radius: 1rem 1rem 5rem 1rem;
 
   position: relative;
@@ -92,7 +92,7 @@ html {
 .card__bookmark-icon {
   width: 100px;
 
-  fill: var(--primary-color);
+  fill: var(--status-color);
 
   position: absolute;
   top: -20px;
@@ -186,7 +186,7 @@ html {
 }
 
 .card__status {
-  color: var(--primary-color);
+  color: var(--status-color);
 }
 
 .card__status::after {

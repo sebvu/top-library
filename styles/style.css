@@ -182,11 +182,16 @@ html {
 
 .card__pages::after {
   color: var(--text-color);
-  content: " pages";
+  content: " Pages";
 }
 
 .card__status {
+  color: var(--primary-color);
+}
+
+.card__status::after {
   color: var(--text-color);
+  content: " Read";
 }
 
 .card__book-img-container {

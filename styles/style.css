@@ -215,10 +215,22 @@ body {
 
 .card__author {
   color: var(--text-color);
+
+  width: 100%;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .card__pages {
   color: var(--secondary-color);
+
+  width: 100%;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .card__pages::after {
@@ -228,6 +240,12 @@ body {
 
 .card__status {
   color: var(--status-color);
+
+  width: 100%;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .card__status::after {

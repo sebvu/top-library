@@ -12,6 +12,10 @@ function Book(author, title, pages, cover) {
   this.id = crypto.randomUUID();
 }
 
+Book.prototype.toggleRead = function () {
+  this.hasRead = hasRead ? false : true;
+};
+
 // central library object to handle all library logic
 function Library() {
   if (!new.target) {

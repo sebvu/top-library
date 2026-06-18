@@ -130,6 +130,14 @@ body {
   position: relative;
 }
 
+.card--read {
+  --status-color: var(--read-color);
+}
+
+.card--not-read {
+  --status-color: var(--not-read-color);
+}
+
 .card__bookmark-icon {
   width: 100px;
 
@@ -208,9 +216,11 @@ body {
   align-items: center;
   justify-content: space-between;
 
-  height: 100%;
+  width: 100%;
 
   padding: 1rem 0 2rem;
+
+  overflow: hidden;
 }
 
 .card__author {

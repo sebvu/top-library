@@ -72,7 +72,7 @@
   --size-xxxl-static: calc(var(--size-xxl-static) * var(--size-scale-up-ratio));
   /* === color schemes === */
 
-  --status-color: var(--_status-color, var(--not-read-color));
+  --status-color: --primary-color;
 
   /* light theme (default) */
   --text-color: #080302;

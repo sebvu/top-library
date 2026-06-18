@@ -13,7 +13,7 @@ function Book(author, title, pages, cover) {
 }
 
 Book.prototype.toggleRead = function () {
-  this.hasRead = hasRead ? false : true;
+  this.hasRead = this.hasRead ? false : true;
 };
 
 // central library object to handle all library logic
@@ -58,7 +58,6 @@ Library.prototype.deleteBook = function (id) {
 };
 
 // display current books in library
-
 function buildExistingBooks(books, ctr) {
   const setAttrs = (el, attrs) => {
     for (let key in attrs) {
@@ -74,6 +73,13 @@ function buildExistingBooks(books, ctr) {
     card.classList.add(...["card"]);
     card.setAttribute("id", b.id);
     cardFlexContainer.appendChild(card);
+
+    // determine read status
+    if (b.hasRead) {
+      cardFlexContainer.classList.add(...["card--read"]);
+    } else {
+      cardFlexContainer.classList.add(...["card--not-read"]);
+    }
 
     // top level elements
 
@@ -254,6 +260,13 @@ function main() {
 
   // TEST
   library.addBook("Andy Weir", "Hail Mary", 496, "assets/images/hail-mary.jpg");
+  library.books[0].toggleRead();
+  library.addBook(
+    "Becky Chambers",
+    "Monk and Robot",
+    496,
+    "assets/images/monk-and-robot.jpg",
+  );
 
   buildExistingBooks(library.books, cardsCtr);
   // TEST

@@ -54,8 +54,34 @@ Library.prototype.deleteBook = function (id) {
 // display current books in library
 
 function main() {
-  const ctr = document.querySelector(".main-content");
+  // keywords
+  const THEME_REF_NAME = "data-theme";
+
+  const root = document.documentElement;
+  const themeButton = document.querySelector(".header__toggle-button");
+  const cardsCtr = document.querySelector(".main-content");
   const library = new Library();
+
+  // set previously saved theme
+  const setSavedTheme = () => {
+    const savedTheme = localStorage.getItem(THEME_REF_NAME);
+
+    if (localStorage.getItem(THEME_REF_NAME))
+      root.setAttribute(THEME_REF_NAME, savedTheme);
+  };
+
+  setSavedTheme();
+
+  // theme switcher handler
+  themeButton.addEventListener("click", () => {
+    const currTheme = root.getAttribute(THEME_REF_NAME);
+
+    let newTheme = currTheme.toLowerCase() === "light" ? "dark" : "light";
+
+    root.setAttribute(THEME_REF_NAME, newTheme);
+
+    localStorage.setItem(THEME_REF_NAME, newTheme); // persist theme per session
+  });
 }
 
 main();

@@ -51,6 +51,12 @@ body {
   color: var(--text-color);
 }
 
+.header__buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 .header__add-button {
   flex: none;
 
@@ -62,6 +68,18 @@ body {
   border: none;
   box-shadow: 0px 2px 8px var(--opposite-background-color);
   border-radius: 1rem;
+}
+
+.header__toggle-button {
+  height: calc(var(--size) * 0.8);
+
+  background-color: #0000;
+  border: none;
+}
+
+.header__toggle-icon {
+  height: 100%;
+  fill: var(--text-color);
 }
 
 /* ========== */
@@ -251,13 +269,7 @@ body {
 @media (max-width: 1600px) {
   .header {
     justify-content: center;
-  }
-}
-
-@media (max-width: 1000px) {
-  .header {
-    gap: 1rem;
-
     flex-direction: column;
+    gap: 1rem;
   }
 }

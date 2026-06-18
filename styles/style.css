@@ -7,6 +7,13 @@ html {
   height: 100%;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+
+  background-color: var(--background-color);
+}
+
 .container {
   display: grid;
   grid:
@@ -15,6 +22,10 @@ html {
     / 1fr;
 
   height: 100%;
+  width: 2000px;
+
+  border-left: 5px solid var(--accent-color);
+  border-right: 5px solid var(--accent-color);
 }
 
 /* ========== */
@@ -60,14 +71,23 @@ html {
 .main-content {
   grid-area: body;
   order: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 3rem;
+  display: grid;
+  grid: repeat(auto-fill, minmax(320px, 1fr)) / repeat(
+      auto-fill,
+      minmax(420px, 1fr)
+    );
+  gap: 5rem;
 
   padding: 3rem 2rem;
 
   background-color: var(--offset-background-color);
+
+  overflow-y: auto;
+}
+
+.card-flex-container {
+  display: flex;
+  justify-content: center;
 }
 
 .card {
@@ -217,4 +237,27 @@ html {
   height: 100%;
 
   object-fit: cover;
+}
+
+@media (max-width: 2450px) {
+  .container {
+    width: 100%;
+
+    border-left: none;
+    border-right: none;
+  }
+}
+
+@media (max-width: 1600px) {
+  .header {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1000px) {
+  .header {
+    gap: 1rem;
+
+    flex-direction: column;
+  }
 }

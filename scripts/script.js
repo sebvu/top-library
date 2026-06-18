@@ -52,27 +52,10 @@ Library.prototype.deleteBook = function (id) {
 };
 
 // display current books in library
-function constructBooks(ctr, library) {
-  for (let i = 0; i < library.books.length; i++) {
-    const newBook = document.createElement("div");
-    const author = document.createElement("p");
-    const title = document.createElement("p");
-    const pages = document.createElement("p");
-    // const image = document.createElement("img");
-
-    /* logic */
-
-    newBook.appendChild(pages);
-
-    ctr.appendChild(newBook);
-  }
-}
 
 function main() {
-  const ctr = document.querySelector(".container");
+  const ctr = document.querySelector(".main-content");
   const library = new Library();
-
-  constructBooks(ctr, library);
 }
 
 main();

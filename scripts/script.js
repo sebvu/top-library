@@ -207,7 +207,7 @@ function buildExistingBooks(books, ctr) {
         "_text",
         "_text--header",
         "_text--bold",
-        "--size-context-sm-static",
+        "--size-context-xs-static",
       ],
     );
     cardAuthor.textContent = b.author;

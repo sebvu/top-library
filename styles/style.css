@@ -168,6 +168,11 @@ body {
   border: none;
 }
 
+.card__button-icon {
+  height: 100%;
+  width: 100%;
+}
+
 .card__button--bookmark {
 }
 
@@ -181,11 +186,6 @@ body {
   /* cascade svg styles */
   stroke: rgb(from var(--text-color) r g b / 50%);
   stroke-width: 3px;
-}
-
-.card__button-icon {
-  height: 100%;
-  width: 100%;
 }
 
 .card__title {

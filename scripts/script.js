@@ -57,15 +57,34 @@ Library.prototype.deleteBook = function (id) {
   }
 };
 
+function UILibraryHandler(library, cardsCtr, themeButton, THEME_REF_NAME) {
+  this.root = document.documentElement;
+  this.library = library;
+  this.cardsCtr = cardsCtr;
+  this.themeButton = themeButton;
+  this.THEME_REF_NAME = THEME_REF_NAME;
+
+  // theme switcher handler
+  themeButton.addEventListener("click", () => {
+    const currTheme = this.root.getAttribute(THEME_REF_NAME);
+
+    let newTheme = currTheme.toLowerCase() === "light" ? "dark" : "light";
+
+    this.root.setAttribute(THEME_REF_NAME, newTheme);
+
+    localStorage.setItem(THEME_REF_NAME, newTheme); // persist theme per session
+  });
+}
+
 // display current books in library
-function buildExistingBooks(library, ctr) {
+UILibraryHandler.prototype.buildExistingBooks = function () {
   const setAttrs = (el, attrs) => {
     for (let key in attrs) {
       el.setAttribute(key, attrs[key]);
     }
   };
 
-  for (let b of library.books) {
+  for (let b of this.library.books) {
     // construct shell
     const cardFlexContainer = document.createElement("div");
     cardFlexContainer.classList.add(...["card-flex-container"]);
@@ -231,12 +250,12 @@ function buildExistingBooks(library, ctr) {
     card.addEventListener("click", (e) => {
       const target = e.target.classList;
       const id = card.id;
-      const bookIndex = library.findBookIndex(id);
+      const bookIndex = this.library.findBookIndex(id);
 
       if (!bookIndex && bookIndex !== 0)
         throw Error(`Book index for ${id} not found`);
 
-      const bookRef = library.books[bookIndex];
+      const bookRef = this.library.books[bookIndex];
 
       switch (true) {
         // toggle read status
@@ -245,27 +264,24 @@ function buildExistingBooks(library, ctr) {
 
           bookRef.toggleRead();
           // not the most optimized thing in the world but it works
-          while (ctr.firstChild) {
-            ctr.removeChild(ctr.firstChild);
+          while (this.cardsCtr.firstChild) {
+            this.cardsCtr.removeChild(this.cardsCtr.firstChild);
           }
 
-          buildExistingBooks(library, ctr);
+          this.buildExistingBooks();
 
           break;
         // delete book
         case target.contains("card__button--delete"):
           console.log(`Deleting ${id}`);
 
-          library.deleteBook(id);
+          this.library.deleteBook(id);
           card.parentElement.remove();
 
           break;
         default:
           console.log(`No action taken for ${id} click`);
       }
-
-      console.log(library.books);
-      // buildExistingBooks(library, ctr);
     });
 
     // bringing everything together
@@ -275,9 +291,17 @@ function buildExistingBooks(library, ctr) {
     card.appendChild(cardBookImageContainer);
     card.appendChild(cardDataContainer);
 
-    ctr.appendChild(cardFlexContainer);
+    this.cardsCtr.appendChild(cardFlexContainer);
   }
-}
+};
+
+// set previously saved theme on localstorage
+UILibraryHandler.prototype.setSavedTheme = function () {
+  const savedTheme = localStorage.getItem(this.THEME_REF_NAME);
+
+  if (localStorage.getItem(this.THEME_REF_NAME))
+    this.root.setAttribute(this.THEME_REF_NAME, savedTheme);
+};
 
 function main() {
   // keywords
@@ -286,20 +310,17 @@ function main() {
   // interactive buttons
   const themeButton = document.querySelector(".header__toggle-button");
   const addBookButton = document.querySelector(".header__add-button");
+  const cardsContainer = document.querySelector(".main-content");
 
-  const root = document.documentElement;
-  const cardsCtr = document.querySelector(".main-content");
   const library = new Library();
+  const uiLib = new UILibraryHandler(
+    library,
+    cardsContainer,
+    themeButton,
+    THEME_REF_NAME,
+  );
 
-  // set previously saved theme
-  const setSavedTheme = () => {
-    const savedTheme = localStorage.getItem(THEME_REF_NAME);
-
-    if (localStorage.getItem(THEME_REF_NAME))
-      root.setAttribute(THEME_REF_NAME, savedTheme);
-  };
-
-  setSavedTheme();
+  uiLib.setSavedTheme();
 
   // TEST
   library.addBook("Andy Weir", "Hail Mary", 496, "assets/images/hail-mary.jpg");
@@ -312,23 +333,8 @@ function main() {
 
   library.books[0].toggleRead();
 
-  buildExistingBooks(library, cardsCtr);
+  uiLib.buildExistingBooks(library, cardsContainer);
   // TEST
-
-  // theme switcher handler
-  themeButton.addEventListener("click", () => {
-    const currTheme = root.getAttribute(THEME_REF_NAME);
-
-    let newTheme = currTheme.toLowerCase() === "light" ? "dark" : "light";
-
-    root.setAttribute(THEME_REF_NAME, newTheme);
-
-    localStorage.setItem(THEME_REF_NAME, newTheme); // persist theme per session
-  });
-
-  addBookButton.addEventListener("click", () => {
-    // modal implementation
-  });
 }
 
 main();

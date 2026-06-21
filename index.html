@@ -38,5 +38,57 @@
       <section class="main-content"></section>
       <!-- ----- -->
     </div>
+    <!-- temporary -->
+    <dialog class="dialog --size-context-md" open>
+      <p class="dialog__title _text _text--header _text--bold">Add Book</p>
+      <form class="dialog__form --size-context-sm" action="" method="">
+        <div class="dialog__form-top">
+          <p class="dialog__form-please _text _text--normal">
+            Please complete all required
+            <span class="dialog__form-required _text _text--bold">(*)</span>
+            fields.
+          </p>
+          <p class="dialog__form-top-p">
+            <label
+              class="dialog__form-text-label _text _text--normal"
+              for="title"
+              >Title:</label
+            >
+            <input
+              class="dialog__form-text-input _text _text--normal _text--bold --size-context-xs"
+              type="text"
+              id="title"
+              name="book_title"
+            />
+          </p>
+          <p class="dialog__form-top-p">
+            <label
+              class="dialog__form-text-label _text _text--normal"
+              for="author"
+              >Author:</label
+            >
+            <input
+              class="dialog__form-text-input _text _text--normal _text--bold --size-context-xs"
+              type="text"
+              id="author"
+              name="book_title"
+            />
+          </p>
+        </div>
+        <div class="dialog__form-left">
+          <!-- <p class="dialog__form-left-p"> -->
+          <!--   <label class="dialog__form-number-label _text _text--normal" for="pages">Pages</label> -->
+          <!--   <input -->
+          <!--     class="dialog__form-number-input _text _text--normal _text--bold" -->
+          <!--     type="number" -->
+          <!--     step="1" -->
+          <!--     id="pages" -->
+          <!--     name="age" -->
+          <!--   /> -->
+          <!-- </p> -->
+        </div>
+        <div class="dialog__form-right"></div>
+      </form>
+    </dialog>
   </body>
 </html>

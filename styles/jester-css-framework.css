@@ -72,7 +72,11 @@
   --size-xxxl-static: calc(var(--size-xxl-static) * var(--size-scale-up-ratio));
   /* === color schemes === */
 
-  --status-color: --primary-color;
+  --status-color: --primary-color; /* redefined depending on status */
+
+  --required-color: #e95745;
+  --form-field-color: #d0c5c4;
+  --form-text-color: #080302;
 
   /* light theme (default) */
   --text-color: #080302;

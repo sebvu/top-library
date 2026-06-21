@@ -57,15 +57,24 @@ Library.prototype.deleteBook = function (id) {
   }
 };
 
-function UILibraryHandler(library, cardsCtr, themeButton, THEME_REF_NAME) {
+function UILibraryHandler(
+  library,
+  cardsCtr,
+  mainCtr,
+  themeButton,
+  addButton,
+  THEME_REF_NAME,
+) {
   this.root = document.documentElement;
   this.library = library;
   this.cardsCtr = cardsCtr;
+  this.mainCtr = mainCtr;
   this.themeButton = themeButton;
+  this.addButton = addButton;
   this.THEME_REF_NAME = THEME_REF_NAME;
 
   // theme switcher handler
-  themeButton.addEventListener("click", () => {
+  this.themeButton.addEventListener("click", () => {
     const currTheme = this.root.getAttribute(THEME_REF_NAME);
 
     let newTheme = currTheme.toLowerCase() === "light" ? "dark" : "light";
@@ -73,6 +82,15 @@ function UILibraryHandler(library, cardsCtr, themeButton, THEME_REF_NAME) {
     this.root.setAttribute(THEME_REF_NAME, newTheme);
 
     localStorage.setItem(THEME_REF_NAME, newTheme); // persist theme per session
+  });
+
+  // add book handler
+  this.addButton.addEventListener("click", () => {
+    const dialog = this.getDialog();
+    const containerParent = mainCtr.parentElement;
+    containerParent.appendChild(dialog);
+
+    dialog.showModal();
   });
 }
 
@@ -303,6 +321,20 @@ UILibraryHandler.prototype.setSavedTheme = function () {
     this.root.setAttribute(this.THEME_REF_NAME, savedTheme);
 };
 
+// dialog creation helper
+UILibraryHandler.prototype.getDialog = function () {
+  const dialog = document.createElement("dialog");
+
+  dialog.classList.add(...["dialog", "--size-context-md"]);
+
+  // ensure dialog deletes itself after closing
+  dialog.addEventListener("close", () => {
+    dialog.remove();
+  });
+
+  return dialog;
+};
+
 function main() {
   // keywords
   const THEME_REF_NAME = "data-theme";
@@ -311,15 +343,20 @@ function main() {
   const themeButton = document.querySelector(".header__toggle-button");
   const addBookButton = document.querySelector(".header__add-button");
   const cardsContainer = document.querySelector(".main-content");
+  const mainContainer = document.querySelector(".container");
 
+  // top level handlers
   const library = new Library();
   const uiLib = new UILibraryHandler(
     library,
     cardsContainer,
+    mainContainer,
     themeButton,
+    addBookButton,
     THEME_REF_NAME,
   );
 
+  // set previously saved theme on localstorage
   uiLib.setSavedTheme();
 
   // TEST

@@ -75,7 +75,7 @@
             />
           </p>
           <div class="dialog__form-top-div">
-            <p class="dialog__form-top-div-p">
+            <p class="dialog__form-top-div-p dialog__form-top-div-p--left">
               <label
                 class="dialog__form-label dialog__form-label--number _text _text--normal"
                 for="pages"
@@ -89,40 +89,36 @@
                 name="book_pages"
               />
             </p>
-
-            <p class="dialog__form-top-div-p">
+            <p class="dialog__form-top-div-p dialog__form-top-div-p--right">
               <label
-                class="dialog__form-label dialog__form-label--image _text _text--normal"
-                for="image"
-                >Cover:</label
+                class="dialog__form-label dialog__form-label--checkbox _text _text--normal"
+                for="has-read"
+                >Has Read:</label
               >
               <input
-                class="dialog__form-input--image _text _text--normal _text--bold --size-context-xs"
-                type="file"
-                id="image"
-                name="book_cover"
-                accept="image/png image/jpeg"
+                class="dialog__form-input dialog__form-input--checkbox _text _text--normal _text--bold --size-context-xs"
+                type="checkbox"
+                id="has-read"
+                name="book_has-read"
               />
             </p>
           </div>
         </div>
         <div class="dialog__form-left">
-          <fieldset class="dialog__form-fieldset dialog__form-left-p">
-            <legend class="dialog__form-fieldset-legend _text _text--normal">
-              Has Read?
-            </legend>
+          <p class="dialog__form-top-div-p">
             <label
-              class="dialog__form-label dialog__form-label--checkbox _text _text--normal"
-              for="has-read"
-              >Yes!</label
+              class="dialog__form-label dialog__form-label--image _text _text--normal"
+              for="image"
+              >Cover:</label
             >
             <input
-              class="dialog__form-input dialog__form-input--checkbox _text _text--normal _text--bold --size-context-xs"
-              type="checkbox"
-              id="has-read"
-              name="book_has-read"
+              class="dialog__form-input dialog__form-input--image _text _text--normal _text--bold --size-context-xs"
+              type="file"
+              id="image"
+              name="book_cover"
+              accept="image/*.png, image/*.jpeg, image/*.jpg"
             />
-          </fieldset>
+          </p>
         </div>
         <div class="dialog__form-right"></div>
       </form>

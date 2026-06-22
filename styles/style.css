@@ -39,7 +39,7 @@ body {
   gap: 1rem;
 
   width: calc(var(--size) * 12);
-  height: calc(var(--size) * 15);
+  height: calc(var(--size) * 17);
   padding: 1.5rem;
 
   background-color: var(--background-color);
@@ -47,6 +47,8 @@ body {
   border-radius: 1rem;
 
   box-shadow: 0 0 0.8rem rgb(from var(--opposite-background-color) r g b / 50%);
+
+  min-width: 0;
 }
 
 .dialog::backdrop {
@@ -62,9 +64,25 @@ body {
   flex: auto;
   display: grid;
   grid:
-    "top top" 1fr
-    "left right" 2fr
+    "top top" 2fr
+    "left right" 3fr
     / 1fr 1fr;
+}
+
+.dialog__form-label {
+  color: var(--text-color);
+}
+
+.dialog__form-input {
+  padding: 0 1rem;
+
+  color: var(--form-text-color);
+  background-color: var(--form-field-color);
+
+  border: 2px solid var(--accent-color);
+  border-radius: 1rem;
+
+  color: var(--form-text-color);
 }
 
 /* top grid dialog form */
@@ -74,9 +92,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-
-  padding: 1rem 0;
 
   width: max-content;
 }
@@ -92,7 +107,7 @@ body {
 }
 
 .dialog__form-top-p {
-  flex: 1;
+  flex: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -101,22 +116,44 @@ body {
   width: 100%;
 }
 
-.dialog__form-text-input {
-  padding: 0 1rem;
-
-  color: var(--form-text-color);
-  background-color: var(--form-field-color);
-
-  border: 2px solid var(--accent-color);
-  border-radius: 1rem;
-
+.dialog__form-input--text {
   flex: 3;
 }
 
-.dialog__form-text-label {
+.dialog__form-label--text {
   flex: 1;
+}
 
-  color: var(--text-color);
+.dialog__form-top-div {
+  flex: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  width: 100%;
+}
+
+.dialog__form-top-div-p {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dialog__form-label--number {
+}
+
+.dialog__form-input--number {
+  width: calc(var(--size) * 5); /* holy magic number */
+}
+
+.dialog__form-label--image {
+}
+
+.dialog__form-input--image {
+  width: calc(var(--size) * 5); /* holy magic number */
 }
 
 /* left grid dialog form */
@@ -124,13 +161,47 @@ body {
   grid-area: left;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
 
   padding: 1rem 0;
+
+  min-width: 0;
 }
 
-/* left grid dialog form */
+.dialog__form-left-p {
+  flex: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  width: 100%;
+}
+
+.dialog__form-fieldset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: var(--size);
+
+  border: 2px solid var(--accent-color);
+  border-radius: 1rem;
+}
+
+.dialog__form-fieldset-legend {
+  color: var(--text-color);
+}
+
+/* .dialog__form-label--checkbox {} */
+
+.dialog__form-input--checkbox {
+  height: calc(var(--size) * 1.5);
+  width: calc(var(--size) * 1.5);
+}
+
+/* right grid dialog form */
 .dialog__form-right {
   grid-area: right;
   display: flex;
@@ -176,7 +247,6 @@ body {
   color: var(--text-color);
   background-color: var(--primary-color);
   border: none;
-  box-shadow: 0 2px 1rem rgb(from var(--opposite-background-color) r g b / 70%);
   border-radius: 1rem;
 }
 
@@ -293,11 +363,9 @@ body {
   pointer-events: none; /* prevent dom clicks */
 }
 
-.card__button--bookmark {
-}
+/* .card__button--bookmark {} */
 
-.card__button--delete {
-}
+/* .card__button--delete {} */
 
 .card__button-divider {
   height: var(--size);

@@ -50,12 +50,12 @@
           </p>
           <p class="dialog__form-top-p">
             <label
-              class="dialog__form-text-label _text _text--normal"
+              class="dialog__form-label dialog__form-label--text _text _text--normal"
               for="title"
               >Title:</label
             >
             <input
-              class="dialog__form-text-input _text _text--normal _text--bold --size-context-xs"
+              class="dialog__form-input dialog__form-input--text _text _text--normal _text--bold --size-context-xs"
               type="text"
               id="title"
               name="book_title"
@@ -63,29 +63,66 @@
           </p>
           <p class="dialog__form-top-p">
             <label
-              class="dialog__form-text-label _text _text--normal"
+              class="dialog__form-label dialog__form-label--text _text _text--normal"
               for="author"
               >Author:</label
             >
             <input
-              class="dialog__form-text-input _text _text--normal _text--bold --size-context-xs"
+              class="dialog__form-input dialog__form-input--text _text _text--normal _text--bold --size-context-xs"
               type="text"
               id="author"
               name="book_title"
             />
           </p>
+          <div class="dialog__form-top-div">
+            <p class="dialog__form-top-div-p">
+              <label
+                class="dialog__form-label dialog__form-label--number _text _text--normal"
+                for="pages"
+                >Pages:</label
+              >
+              <input
+                class="dialog__form-input dialog__form-input--number _text _text--normal _text--bold --size-context-xs"
+                type="number"
+                step="100"
+                id="pages"
+                name="book_pages"
+              />
+            </p>
+
+            <p class="dialog__form-top-div-p">
+              <label
+                class="dialog__form-label dialog__form-label--image _text _text--normal"
+                for="image"
+                >Cover:</label
+              >
+              <input
+                class="dialog__form-input--image _text _text--normal _text--bold --size-context-xs"
+                type="file"
+                id="image"
+                name="book_cover"
+                accept="image/png image/jpeg"
+              />
+            </p>
+          </div>
         </div>
         <div class="dialog__form-left">
-          <!-- <p class="dialog__form-left-p"> -->
-          <!--   <label class="dialog__form-number-label _text _text--normal" for="pages">Pages</label> -->
-          <!--   <input -->
-          <!--     class="dialog__form-number-input _text _text--normal _text--bold" -->
-          <!--     type="number" -->
-          <!--     step="1" -->
-          <!--     id="pages" -->
-          <!--     name="age" -->
-          <!--   /> -->
-          <!-- </p> -->
+          <fieldset class="dialog__form-fieldset dialog__form-left-p">
+            <legend class="dialog__form-fieldset-legend _text _text--normal">
+              Has Read?
+            </legend>
+            <label
+              class="dialog__form-label dialog__form-label--checkbox _text _text--normal"
+              for="has-read"
+              >Yes!</label
+            >
+            <input
+              class="dialog__form-input dialog__form-input--checkbox _text _text--normal _text--bold --size-context-xs"
+              type="checkbox"
+              id="has-read"
+              name="book_has-read"
+            />
+          </fieldset>
         </div>
         <div class="dialog__form-right"></div>
       </form>

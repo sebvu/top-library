@@ -55,9 +55,34 @@ body {
   background-color: rgb(from var(--opposite-background-color) r g b / 20%);
 }
 
+.dialog__header {
+  width: 100%;
+
+  text-align: center;
+
+  position: relative;
+}
+
 .dialog__title {
   flex: none;
   color: var(--text-color);
+}
+
+.dialog__exit-button {
+  width: calc(var(--size) * 1.5);
+  height: calc(var(--size) * 1.5);
+
+  background: none;
+  color: none;
+  border: none;
+
+  position: absolute;
+  left: -20px;
+  top: -15px;
+}
+
+.dialog__exit-svg {
+  fill: var(--primary-color);
 }
 
 .dialog__form {

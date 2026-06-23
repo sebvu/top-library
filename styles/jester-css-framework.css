@@ -75,6 +75,7 @@
   --status-color: --primary-color; /* redefined depending on status */
 
   --required-color: #e95745;
+  --valid-color: var(--accent-color);
   --form-field-color: #d0c5c4;
   --form-text-color: #080302;
 

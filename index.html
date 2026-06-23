@@ -44,42 +44,47 @@
       <form class="dialog__form --size-context-sm" action="" method="">
         <div class="dialog__form-top">
           <p class="dialog__form-please _text _text--normal">
-            Please complete all required
-            <span class="dialog__form-required _text _text--bold">(*)</span>
-            fields.
+            Please complete all required (<span
+              class="dialog__form-required _text _text--bold"
+              >*</span
+            >) fields.
           </p>
           <p class="dialog__form-top-p">
             <label
               class="dialog__form-label dialog__form-label--text _text _text--normal"
               for="title"
-              >Title:</label
+              >Title</label
             >
             <input
               class="dialog__form-input dialog__form-input--text _text _text--normal _text--bold --size-context-xs"
               type="text"
               id="title"
               name="book_title"
+              required
             />
+            <span></span>
           </p>
           <p class="dialog__form-top-p">
             <label
               class="dialog__form-label dialog__form-label--text _text _text--normal"
               for="author"
-              >Author:</label
+              >Author</label
             >
             <input
               class="dialog__form-input dialog__form-input--text _text _text--normal _text--bold --size-context-xs"
               type="text"
               id="author"
               name="book_title"
+              required
             />
+            <span></span>
           </p>
           <div class="dialog__form-top-div">
             <p class="dialog__form-top-div-p dialog__form-top-div-p--left">
               <label
                 class="dialog__form-label dialog__form-label--number _text _text--normal"
                 for="pages"
-                >Pages:</label
+                >Pages</label
               >
               <input
                 class="dialog__form-input dialog__form-input--number _text _text--normal _text--bold --size-context-xs"
@@ -87,13 +92,18 @@
                 step="100"
                 id="pages"
                 name="book_pages"
+                max="100000"
+                required
               />
+              <span></span>
             </p>
-            <p class="dialog__form-top-div-p dialog__form-top-div-p--right">
+            <p
+              class="dialog__form-top-div-p dialog__form-top-div-p--right dialog__form-top-div-p--gap"
+            >
               <label
                 class="dialog__form-label dialog__form-label--checkbox _text _text--normal"
                 for="has-read"
-                >Has Read:</label
+                >Has Read</label
               >
               <input
                 class="dialog__form-input dialog__form-input--checkbox _text _text--normal _text--bold --size-context-xs"
@@ -103,16 +113,14 @@
               />
             </p>
           </div>
-        </div>
-        <div class="dialog__form-left">
-          <p class="dialog__form-top-div-p">
+          <p class="dialog__form-top-p">
             <label
               class="dialog__form-label dialog__form-label--image _text _text--normal"
               for="image"
-              >Cover:</label
+              >Cover</label
             >
             <input
-              class="dialog__form-input dialog__form-input--image _text _text--normal _text--bold --size-context-xs"
+              class="dialog__form-input--image _text _text--normal _text--bold --size-context-xs"
               type="file"
               id="image"
               name="book_cover"
@@ -120,7 +128,25 @@
             />
           </p>
         </div>
-        <div class="dialog__form-right"></div>
+        <div class="dialog__form-bottom">
+          <div class="dialog__form-cover-container">
+            <img
+              src=""
+              class="dialog__form-cover-img"
+              alt="Book Cover Selected"
+              onerror="this.src = './assets/images/default-cover.jpg'"
+            />
+            <!-- define this onerror as a function when js -->
+          </div>
+          <div class="dialog__form-bottom-div --size-context-rg">
+            <button
+              class="dialog__form-button _text _text--header _text--bold"
+              submit
+            >
+              Submit
+            </button>
+          </div>
+        </div>
       </form>
     </dialog>
   </body>

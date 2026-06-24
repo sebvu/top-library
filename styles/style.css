@@ -580,29 +580,45 @@ body {
 }
 
 @media (max-width: 500px) {
+  :root {
+    --base-size: 0.7rem;
+  }
+
+  .container {
+    grid:
+      "header" min-content
+      "body" 5fr;
+  }
+
   .main-content {
-    padding: 2rem 0.5rem;
+    padding: 3rem 0;
 
     grid: repeat(auto-fill, minmax(260px, 1fr)) / repeat(
         auto-fill,
-        minmax(420px, 1fr)
+        minmax(320px, 1fr)
       );
   }
 
   .card {
     padding: 1rem 1.5rem 1.5rem;
 
-    height: 260px;
-    width: 350px;
+    height: 200px;
+    width: 300px;
   }
 
   .card__bookmark-icon {
     width: 80px;
   }
 
+  .card__button-area {
+    width: 120px;
+    height: 48px;
+    right: 50px;
+  }
+
   .card__book-img-container {
-    width: 140px;
-    height: 224px;
+    width: 100px;
+    height: 160px;
 
     left: -12px;
     bottom: -58px;

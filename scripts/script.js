@@ -1,13 +1,13 @@
 // book object instantiation
-function Book(author, title, pages, cover) {
+function Book(title, author, pages, cover, hasRead) {
   if (!new.target) {
     throw Error("Book object not initialized with new keyword");
   }
-  this.author = author;
   this.title = title;
+  this.author = author;
   this.pages = pages;
-  this.hasRead = false;
   this.cover = cover;
+  this.hasRead = hasRead;
   // metadata
   this.id = crypto.randomUUID();
 }
@@ -25,8 +25,8 @@ function Library() {
 }
 
 // add new book object to books array
-Library.prototype.addBook = function (author, title, pages, cover) {
-  this.books.push(new Book(author, title, pages, cover));
+Library.prototype.addBook = function (title, author, pages, cover, hasRead) {
+  this.books.push(new Book(title, author, pages, cover, hasRead));
 };
 
 Library.prototype.findBookIndex = function (id) {
@@ -114,6 +114,12 @@ UILibraryHandler.prototype._getDialog = function () {
 UILibraryHandler.prototype._setAttrs = function (el, attrs) {
   for (let key in attrs) {
     el.setAttribute(key, attrs[key]);
+  }
+};
+
+UILibraryHandler.prototype._removeExistingBooks = function () {
+  while (this.cardsCtr.firstChild) {
+    this.cardsCtr.removeChild(this.cardsCtr.firstChild);
   }
 };
 
@@ -403,26 +409,53 @@ UILibraryHandler.prototype._buildAddBookDialog = function (dialog) {
   dialogForm.appendChild(dialogFormBottom);
   // functionality
 
-  // -- image fallback if no image is specified
-  dialogFormCoverImg.onerror = () => {
+  dialogFormCoverImg.addEventListener("error", () => {
     dialogFormCoverImg.setAttribute("src", "./assets/images/default-cover.jpg");
-  };
+  });
+
+  // -- image update selection
+  DialogFormTopP3Input.addEventListener("input", () => {
+    const url = URL.createObjectURL(DialogFormTopP3Input.files[0]);
+    dialogFormCoverImg.setAttribute("src", url);
+  });
+
+  // -- prevent submission from sending data to server
+  dialogForm.addEventListener("submit", (e) => e.preventDefault());
 
   dialog.addEventListener("click", (e) => {
     const target = e.target.classList;
-    console.log(target);
 
     switch (true) {
       // -- exit button actually exits dialog
       case target.contains("dialog__exit-button"):
-        console.log("Deleting dialog")
+        console.log("Deleting dialog");
         dialog.close();
         break;
       // -- submit button
       case target.contains("dialog__form-button"):
-        console.log("Form submission attempt")
+        console.log("Form submission attempt");
         const form = dialog.querySelector(".dialog__form");
-        console.log(form.requestSubmit());
+
+        if (form.checkValidity()) {
+          console.log("Validity successful, uploading entry.");
+          e.preventDefault();
+
+          const title = DialogFormTopP1Input.value;
+          const author = DialogFormTopP2Input.value;
+          const pages = DialogFormTopDivP1Input.value;
+          const hasRead = DialogFormTopDivP2Input.checked;
+          const cover =
+            DialogFormTopP3Input.files.length === 0
+              ? "./assets/images/default-cover.jpg"
+              : URL.createObjectURL(DialogFormTopP3Input.files[0]);
+
+          this.library.addBook(title, author, pages, cover, hasRead);
+          this.buildExistingBooks();
+          form.requestSubmit();
+          dialog.close();
+        } else {
+          console.log("Validity unsuccesful");
+        }
         break;
     }
   });
@@ -434,6 +467,8 @@ UILibraryHandler.prototype._buildAddBookDialog = function (dialog) {
 
 // display current books in library
 UILibraryHandler.prototype.buildExistingBooks = function () {
+  this._removeExistingBooks();
+
   for (let b of this.library.books) {
     // construct shell
     const cardFlexContainer = document.createElement("div");
@@ -613,10 +648,6 @@ UILibraryHandler.prototype.buildExistingBooks = function () {
           console.log(`Toggling ${id} status`);
 
           bookRef.toggleRead();
-          // not the most optimized thing in the world but it works
-          while (this.cardsCtr.firstChild) {
-            this.cardsCtr.removeChild(this.cardsCtr.firstChild);
-          }
 
           this.buildExistingBooks();
 

@@ -77,8 +77,8 @@ body {
   border: none;
 
   position: absolute;
-  left: -20px;
-  top: -15px;
+  left: -15px;
+  top: -10px;
 }
 
 .dialog__exit-svg {
@@ -196,11 +196,10 @@ body {
 }
 
 .dialog__form-top-div-p--gap {
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .dialog__form-top-div-p--right {
-  flex: 1;
   justify-content: flex-end;
 }
 

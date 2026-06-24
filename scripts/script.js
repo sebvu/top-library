@@ -17,19 +17,54 @@ Book.prototype.toggleRead = function () {
 };
 
 // central library object to handle all library logic
-function Library() {
+function Library(BOOKS_REF_NAME) {
   if (!new.target) {
     throw Error("Library object not initialized with new keyword");
   }
-  this.books = []; // stores Book objects
+  this.BOOKS_REF_NAME = BOOKS_REF_NAME; // localstorage ref
+  // determine if previously saved books exist, then set books as such
+  this.books = this._setBooks();
 }
 
-// add new book object to books array
-Library.prototype.addBook = function (title, author, pages, cover, hasRead) {
-  this.books.push(new Book(title, author, pages, cover, hasRead));
+// helper to initially set books
+Library.prototype._setBooks = function () {
+  let booksArr = [];
+  let storageSavedBooks = localStorage.getItem(this.BOOKS_REF_NAME);
+
+  if (storageSavedBooks && storageSavedBooks !== "[]") {
+    console.log("Saved books found, adding.");
+    const savedBooks = JSON.parse(storageSavedBooks);
+
+    for (const book of savedBooks) {
+      booksArr.push(
+        new Book(book.title, book.author, book.pages, book.cover, book.hasRead),
+      );
+    }
+  } else {
+    // my curated two book list of books for visitors without current books
+    console.log("Adding default books");
+    booksArr.push(
+      new Book(
+        "Hail Mary",
+        "Andy Weir",
+        496,
+        "./assets/images/hail-mary.jpg",
+        false,
+      ),
+      new Book(
+        "Monk and Robot",
+        "Becky Chambers",
+        304,
+        "./assets/images/monk-and-robot.jpg",
+        false,
+      ),
+    );
+  }
+
+  return booksArr;
 };
 
-Library.prototype.findBookIndex = function (id) {
+Library.prototype._findBookIndex = function (id) {
   if (typeof id !== "string")
     throw Error(`findBook ID type is not string: ${id}`);
 
@@ -45,13 +80,30 @@ Library.prototype.findBookIndex = function (id) {
   return index;
 };
 
+Library.prototype.toggleBook = function (id) {
+  const bookIndex = this._findBookIndex(id);
+
+  if (!bookIndex) throw Error(`Book index not found for ${id}`);
+
+  this.books[bookIndex].toggleRead();
+
+  localStorage.setItem(this.BOOKS_REF_NAME, JSON.stringify(this.books));
+};
+
+// add new book object to books array
+Library.prototype.addBook = function (title, author, pages, cover, hasRead) {
+  this.books.push(new Book(title, author, pages, cover, hasRead));
+  localStorage.setItem(this.BOOKS_REF_NAME, JSON.stringify(this.books));
+};
+
 // search book by id and delete from array if found
 Library.prototype.deleteBook = function (id) {
-  const index = this.findBookIndex(id);
+  const index = this._findBookIndex(id);
 
   if (index !== null) {
     console.log(`Deleting ${this.books[index].title}`);
     this.books = this.books.slice(0, index).concat(this.books.slice(index + 1));
+    localStorage.setItem(this.BOOKS_REF_NAME, JSON.stringify(this.books));
   } else {
     throw Error(`Could not delete book with ID ${id}`);
   }
@@ -415,8 +467,12 @@ UILibraryHandler.prototype._buildAddBookDialog = function (dialog) {
 
   // -- image update selection
   DialogFormTopP3Input.addEventListener("input", () => {
-    const url = URL.createObjectURL(DialogFormTopP3Input.files[0]);
-    dialogFormCoverImg.setAttribute("src", url);
+    const reader = new FileReader();
+    const file = DialogFormTopP3Input.files[0];
+    reader.readAsDataURL(file);
+    reader.addEventListener("load", () => {
+      dialogFormCoverImg.setAttribute("src", reader.result);
+    });
   });
 
   // -- prevent submission from sending data to server
@@ -447,7 +503,7 @@ UILibraryHandler.prototype._buildAddBookDialog = function (dialog) {
           const cover =
             DialogFormTopP3Input.files.length === 0
               ? "./assets/images/default-cover.jpg"
-              : URL.createObjectURL(DialogFormTopP3Input.files[0]);
+              : DialogFormTopP3Input.files[0];
 
           this.library.addBook(title, author, pages, cover, hasRead);
           this.buildExistingBooks();
@@ -593,10 +649,21 @@ UILibraryHandler.prototype.buildExistingBooks = function () {
     cardBookImageContainer.classList.add(...["card__book-img-container"]);
     const cardBookImage = document.createElement("img");
     cardBookImage.classList.add(...["card__book-img"]);
-    this._setAttrs(cardBookImage, {
-      src: b.cover,
-      alt: "Book Cover Image",
-    });
+    // convert img to base64 before uploading
+    const setBookImage = () => {
+      if (typeof b.cover === "string") {
+        cardBookImage.setAttribute("src", b.cover);
+      } else {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          cardBookImage.setAttribute("src", reader.result);
+        });
+        reader.readAsDataURL(b.cover);
+      }
+    };
+    setBookImage();
+
+    cardBookImage.setAttribute("alt", "Book Cover Image");
     cardBookImageContainer.appendChild(cardBookImage);
 
     // card data area
@@ -635,19 +702,15 @@ UILibraryHandler.prototype.buildExistingBooks = function () {
     card.addEventListener("click", (e) => {
       const target = e.target.classList;
       const id = card.id;
-      const bookIndex = this.library.findBookIndex(id);
 
-      if (!bookIndex && bookIndex !== 0)
-        throw Error(`Book index for ${id} not found`);
-
-      const bookRef = this.library.books[bookIndex];
+      if (!id) throw Error(`${id} not found`);
 
       switch (true) {
         // toggle read status
         case target.contains("card__button--bookmark"):
           console.log(`Toggling ${id} status`);
 
-          bookRef.toggleRead();
+          this.library.toggleBook(id);
 
           this.buildExistingBooks();
 
@@ -687,6 +750,7 @@ UILibraryHandler.prototype.setSavedTheme = function () {
 function main() {
   // keywords
   const THEME_REF_NAME = "data-theme";
+  const BOOKS_REF_NAME = "data-books";
 
   // interactive buttons
   const themeButton = document.querySelector(".header__toggle-button");
@@ -695,7 +759,7 @@ function main() {
   const mainContainer = document.querySelector(".container");
 
   // top level handlers
-  const library = new Library();
+  const library = new Library(BOOKS_REF_NAME);
   const uiLib = new UILibraryHandler(
     library,
     cardsContainer,
@@ -705,22 +769,8 @@ function main() {
     THEME_REF_NAME,
   );
 
-  // set previously saved theme on localstorage
-  uiLib.setSavedTheme();
-
-  // TEST
-  library.addBook("Andy Weir", "Hail Mary", 496, "assets/images/hail-mary.jpg");
-  library.addBook(
-    "Becky Chambers",
-    "Monk and Robot",
-    496,
-    "assets/images/monk-and-robot.jpg",
-  );
-
-  library.books[0].toggleRead();
-
-  uiLib.buildExistingBooks(library, cardsContainer);
-  // TEST
+  uiLib.setSavedTheme(); // set previously saved theme on localstorage
+  uiLib.buildExistingBooks(); // build previously saved books
 }
 
 main();

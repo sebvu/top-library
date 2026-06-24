@@ -390,7 +390,7 @@ UILibraryHandler.prototype._buildAddBookDialog = function (dialog) {
   dialogFormBottomDiv.classList.add(
     ...["dialog__form-bottom-div", "--size-context-rg"],
   );
-  const dialogFormButton = document.createElement("div");
+  const dialogFormButton = document.createElement("button");
   dialogFormButton.classList.add(
     ...["dialog__form-button", "_text", "_text--header", "_text--bold"],
   );
@@ -407,6 +407,25 @@ UILibraryHandler.prototype._buildAddBookDialog = function (dialog) {
   dialogFormCoverImg.onerror = () => {
     dialogFormCoverImg.setAttribute("src", "./assets/images/default-cover.jpg");
   };
+
+  dialog.addEventListener("click", (e) => {
+    const target = e.target.classList;
+    console.log(target);
+
+    switch (true) {
+      // -- exit button actually exits dialog
+      case target.contains("dialog__exit-button"):
+        console.log("Deleting dialog")
+        dialog.close();
+        break;
+      // -- submit button
+      case target.contains("dialog__form-button"):
+        console.log("Form submission attempt")
+        const form = dialog.querySelector(".dialog__form");
+        console.log(form.requestSubmit());
+        break;
+    }
+  });
 
   // adding everything together
   dialog.appendChild(dialogHeader);

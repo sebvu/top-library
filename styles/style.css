@@ -613,14 +613,12 @@ body {
   .card__button-area {
     width: 120px;
     height: 48px;
-    right: 50px;
   }
 
   .card__book-img-container {
     width: 100px;
     height: 160px;
 
-    left: -12px;
-    bottom: -58px;
+    bottom: -45px;
   }
 }

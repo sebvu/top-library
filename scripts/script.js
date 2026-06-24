@@ -83,7 +83,7 @@ Library.prototype._findBookIndex = function (id) {
 Library.prototype.toggleBook = function (id) {
   const bookIndex = this._findBookIndex(id);
 
-  if (!bookIndex) throw Error(`Book index not found for ${id}`);
+  if (!bookIndex && bookIndex !== 0) throw Error(`Book index not found for ${id}`);
 
   this.books[bookIndex].toggleRead();
 
@@ -768,6 +768,8 @@ function main() {
     addBookButton,
     THEME_REF_NAME,
   );
+
+  console.log(library.books);
 
   uiLib.setSavedTheme(); // set previously saved theme on localstorage
   uiLib.buildExistingBooks(); // build previously saved books

@@ -282,7 +282,7 @@ UILibraryHandler.prototype._buildAddBookDialog = function (dialog) {
     id: "pages",
     name: "book_pages",
     placeholder: "496",
-    min: "0",
+    min: "1",
     max: "10000",
     required: "",
   });

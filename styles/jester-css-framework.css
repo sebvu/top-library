@@ -75,7 +75,7 @@
   --status-color: --primary-color; /* redefined depending on status */
 
   --required-color: #e95745;
-  --valid-color: var(--accent-color);
+  --valid-color: var(--read-color);
   --form-field-color: #d0c5c4;
   --form-text-color: #080302;
 
@@ -90,7 +90,7 @@
   --accent-color: #ded268;
 
   --not-read-color: #d24232;
-  --read-color: lightgreen;
+  --read-color: #0f9524;
 }
 
 /* dark theme */
@@ -105,7 +105,7 @@
   --accent-color: #978b21;
 
   --not-read-color: #cd3d2d;
-  --read-color: green;
+  --read-color: #26a143;
 }
 
 /* === size context providers === */

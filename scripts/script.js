@@ -513,13 +513,34 @@ class UILibraryHandler {
             const author = DialogFormTopP2Input.value;
             const pages = DialogFormTopDivP1Input.value;
             const hasRead = DialogFormTopDivP2Input.checked;
-            const cover =
-              DialogFormTopP3Input.files.length === 0
-                ? "./assets/images/default-cover.jpg"
-                : DialogFormTopP3Input.files[0];
+            (() => {
+              console.log(DialogFormTopP3Input.files.length);
 
-            this.library.addBook(title, author, pages, cover, hasRead);
-            this.buildExistingBooks();
+              if (DialogFormTopP3Input.files.length === 0) {
+                this.library.addBook(
+                  title,
+                  author,
+                  pages,
+                  "./assets/images/default-cover.jpg",
+                  hasRead,
+                );
+                this.buildExistingBooks();
+              } else {
+                const reader = new FileReader();
+                // wait for load to add and reset current books
+                reader.addEventListener("load", () => {
+                  this.library.addBook(
+                    title,
+                    author,
+                    pages,
+                    reader.result,
+                    hasRead,
+                  );
+                  this.buildExistingBooks();
+                });
+                reader.readAsDataURL(DialogFormTopP3Input.files[0]);
+              }
+            })();
             form.requestSubmit();
             dialog.close();
           } else {
@@ -663,20 +684,7 @@ class UILibraryHandler {
       cardBookImageContainer.classList.add(...["card__book-img-container"]);
       const cardBookImage = document.createElement("img");
       cardBookImage.classList.add(...["card__book-img"]);
-      // convert img to base64 before uploading
-      const setBookImage = () => {
-        if (typeof b.cover === "string") {
-          cardBookImage.setAttribute("src", b.cover);
-        } else {
-          const reader = new FileReader();
-          reader.addEventListener("load", () => {
-            cardBookImage.setAttribute("src", reader.result);
-          });
-          console.log(b.cover);
-          reader.readAsDataURL(b.cover);
-        }
-      };
-      setBookImage();
+      cardBookImage.setAttribute("src", b.cover);
 
       cardBookImage.setAttribute("alt", "Book Cover Image");
       cardBookImageContainer.appendChild(cardBookImage);

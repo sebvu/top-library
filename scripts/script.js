@@ -152,7 +152,7 @@ class UILibraryHandler {
       const containerParent = mainCtr.parentElement;
       containerParent.appendChild(dialog);
 
-      this._buildAddBookDialog(dialog);
+      this.#buildAddBookDialog(dialog);
 
       dialog.showModal();
     });
@@ -672,6 +672,7 @@ class UILibraryHandler {
           reader.addEventListener("load", () => {
             cardBookImage.setAttribute("src", reader.result);
           });
+          console.log(b.cover);
           reader.readAsDataURL(b.cover);
         }
       };

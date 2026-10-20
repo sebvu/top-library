@@ -471,6 +471,46 @@ class UILibraryHandler {
     dialogForm.appendChild(dialogFormBottom);
     // functionality
 
+    // --- event listeners for validation messages
+
+    // title
+    DialogFormTopP1Input.addEventListener("input", (event) => {
+      if (DialogFormTopP1Input.validity.valueMissing) {
+        DialogFormTopP1Input.setCustomValidity(
+          "Please insert book title name.",
+        );
+      } else {
+        DialogFormTopP1Input.setCustomValidity("");
+      }
+    });
+
+    // author
+    DialogFormTopP2Input.addEventListener("input", (event) => {
+      if (DialogFormTopP2Input.validity.valueMissing) {
+        DialogFormTopP2Input.setCustomValidity("Please insert author name.");
+      } else {
+        DialogFormTopP2Input.setCustomValidity("");
+      }
+    });
+
+    // pages
+    DialogFormTopDivP1Input.addEventListener("input", (event) => {
+      if (DialogFormTopDivP1Input.validity.valueMissing) {
+        DialogFormTopP2Input.setCustomValidity("Please insert pages count.");
+      } else if (
+        DialogFormTopDivP1Input.validity.rangeUnderflow ||
+        DialogFormTopDivP1Input.validity.rangeOverflow
+      ) {
+        DialogFormTopP2Input.setCustomValidity(
+          "Please ensure page count is between 1 and 10000.",
+        );
+      } else {
+        DialogFormTopP2Input.setCustomValidity("");
+      }
+    });
+
+    // ---
+
     dialogFormCoverImg.addEventListener("error", () => {
       dialogFormCoverImg.setAttribute(
         "src",
